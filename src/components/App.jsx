@@ -1,22 +1,21 @@
-import { Component } from 'react';
+import React, { useState } from 'react';
 import { Searchbar } from './Searchbar/Searchbar';
-
-import { ImageGallery } from './ImageGallery/ImageGallery';
+import ImageGallery from './ImageGallery/ImageGallery';
 import { Container } from './App.styled';
 
-export class App extends Component {
-  state = {
-    value: '',
+function App() {
+  const [value, setValue] = useState('');
+
+  const handleSubmit = value => {
+    setValue(value);
   };
-  onSubmit = value => {
-    this.setState({ value: value });
-  };
-  render() {
-    return (
-      <Container>
-        <Searchbar onSubmit={this.onSubmit} />
-        <ImageGallery value={this.state.value} />
-      </Container>
-    );
-  }
+
+  return (
+    <Container>
+      <Searchbar onSubmit={handleSubmit} />
+      <ImageGallery value={value} />
+    </Container>
+  );
 }
+
+export default App;
